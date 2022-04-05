@@ -1,0 +1,32 @@
+<template>
+   <div>
+        <lightning-combobox
+        name="model"
+        label="Choose a Model"
+        value={model}
+        placeholder="Choose a model"
+        options={models}
+        onchange={handleChangeFilter} ></lightning-combobox>
+
+        <lightning-combobox
+        name="brand"
+        label="Choose a Car Brand"
+        value={brand}
+        placeholder="Choose a Car Brand"
+        options={brands}
+        onchange={handleChangeFilter} ></lightning-combobox>
+
+   </div>
+   <div >
+      <template if:true={products.data}>
+           <c-salesforce-codex-data-table
+                   key-field="Id"
+                   data={products.data}
+                   show-row-number-column
+                   row-number-offset={rowOffset}
+                   hide-checkbox-column
+                   columns={columns}>
+           </c-salesforce-codex-data-table>
+      </template>
+   </div>
+</template>

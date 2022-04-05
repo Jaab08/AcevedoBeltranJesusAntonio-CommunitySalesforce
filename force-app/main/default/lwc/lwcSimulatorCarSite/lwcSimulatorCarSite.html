@@ -1,0 +1,50 @@
+<template>
+    <div>
+        <lightning-combobox
+        name="model"
+        label="Choose a Model"
+        value={model}
+        placeholder="Choose a model"
+        options={models}
+        onchange={handleChangeModel} ></lightning-combobox>
+
+        <lightning-input type="number" name="amount" label="Amount" value="00.00" formatter="currency" step="0.01" onchange={handleChangeAmount}></lightning-input>
+
+        <lightning-input type="number" name="downPayment" label="Down Payment" value="00.00" formatter="currency" step="0.01" onchange={handleChangeDownPayment}></lightning-input>
+
+        <lightning-combobox
+        name="term"
+        label="Term"
+        value={term}
+        placeholder="Choose a term"
+        options={terms}
+        onchange={handleChangeTerm} ></lightning-combobox>
+
+        <lightning-layout pull-to-boundary="medium">
+            <lightning-layout-item padding="aroun-small">
+                <lightning-button variant="success" label="Calculate" title="Calculate Down Payment" onclick={handleClick} class="slds-m-left_x-small"></lightning-button>
+            </lightning-layout-item>
+            <lightning-layout-item padding="aroun-small">
+                <lightning-button variant="brand" label="Donwload CSV" title="Download CSV" onclick={downloadCSV} class="slds-m-left_x-small" disabled={disabled}></lightning-button>
+            </lightning-layout-item>
+            <lightning-layout-item padding="aroun-small">
+                <lightning-button variant="brand" label="Dowload PDF" title="Donwload PDF" onclick={downloadPdf} class="slds-m-left_x-small" disabled={disabled}></lightning-button>
+            </lightning-layout-item>
+        </lightning-layout>
+
+    </div>
+
+    <div style="margin-top: 2%;">
+        <template if:true={dataIsReady}>
+            <c-salesforce-codex-data-table
+                key-field="id"
+                data={data}
+                show-row-number-column
+                row-number-offset={rowOffset}
+                hide-checkbox-column
+                columns={columns}>
+            </c-salesforce-codex-data-table>
+        </template>
+    </div>
+    
+</template>

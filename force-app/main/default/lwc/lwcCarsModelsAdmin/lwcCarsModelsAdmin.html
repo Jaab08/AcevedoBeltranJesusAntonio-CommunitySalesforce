@@ -1,0 +1,92 @@
+<template>
+    <lightning-button variant="success" label="New Car" title="New Car" onclick={handleClickNewCar} class="slds-m-left_x-small"></lightning-button>
+    <template if:true={products.data}>
+        <div style="margin-top: 1%;">
+            <lightning-combobox
+            name="model"
+            label="Choose a Model"
+            value={model}
+            placeholder="Choose a model"
+            options={models}
+            onchange={handleChangeFilter} ></lightning-combobox>
+    
+            <lightning-combobox
+            name="brand"
+            label="Choose a Car Brand"
+            value={brand}
+            placeholder="Choose a Car Brand"
+            options={brands}
+            onchange={handleChangeFilter} ></lightning-combobox>
+    
+       </div>
+        
+        <div style="margin-top: 2%;">
+            <c-salesforce-codex-data-table
+                key-field="Id"
+                data={products.data}
+                show-row-number-column
+                row-number-offset={rowOffset}
+                hide-checkbox-column
+                columns={columns}
+                onsave={handleUpdate}
+                draft-values={draftValues}>
+            </c-salesforce-codex-data-table>
+        </div>
+    </template>
+
+    <template if:true={openModal}>
+        <section role="dialog" tabindex="-1" class="slds-modal slds-fade-in-open slds-modal_small" aria-labelledby="modal-heading-01" aria-modal="true">
+            <div class="slds-modal__container">
+              <div class="slds-modal__header">
+                <h1 id="modal-heading-01" class="slds-modal__title slds-hyphenate">New Car</h1>
+              </div>
+              <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-1">
+
+                <lightning-input type="text" name="nameProduct" label="Name Product:" onchange={handleChangeNewCarForm}></lightning-input>
+                
+                <lightning-combobox
+                name="newModel"
+                label="Choose a Model"
+                value={model}
+                placeholder="Choose a model"
+                options={models}
+                onchange={handleChangeNewCarForm} ></lightning-combobox>
+        
+                <lightning-combobox
+                name="newBrand"
+                label="Choose a Car Brand"
+                value={brand}
+                placeholder="Choose a Car Brand"
+                options={brands}
+                onchange={handleChangeNewCarForm} ></lightning-combobox>
+
+                <lightning-input
+                    label="Choose a Image"
+                    name="chooseImage"
+                    accept={acceptedFormats}
+                    onchange={handleFilesChange}
+                    type="file"
+                    >
+                </lightning-input>
+
+                <lightning-combobox
+                name="color"
+                label="Color"
+                value={color}
+                placeholder="Choose a Color"
+                options={colors}
+                onchange={handleChangeNewCarForm} ></lightning-combobox>
+
+                <lightning-input type="number" name="price" label="Price" value="0.00" formatter="currency" step="0.01" onchange={handleChangeNewCarForm}></lightning-input>
+
+                <lightning-input type="checkbox" label="Is Active?" name="isActive" onchange={handleChangeNewCarForm}></lightning-input>
+              </div>
+              <div class="slds-modal__footer">
+                <button class="slds-button slds-button_neutral" aria-label="Cancel and close" onclick={handleCloseModal}>Cancel</button>
+                <button class="slds-button slds-button_brand" onclick={saveProduct}>Save</button>
+              </div>
+            </div>
+          </section>
+          <div class="slds-backdrop slds-backdrop_open" role="presentation"></div>
+    </template>
+</template>

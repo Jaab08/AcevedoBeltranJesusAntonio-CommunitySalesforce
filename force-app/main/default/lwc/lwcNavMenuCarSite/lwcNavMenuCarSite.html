@@ -1,0 +1,18 @@
+<template>
+    <div>
+		<ul if:true={isGuestUser}>
+			<li class="active"><a href={homeUrl} >Home</a> </li>
+			<li><a href={carsUrl} >Cars/Models</a> </li>
+			<li><a href={appointmentUrl} >Appointments</a> </li>
+			<li><a href={simulatorUrl} >Simulator</a> </li>
+		</ul>
+	</div>
+
+	<div if:false={isGuestUser}>
+		<ul>
+			<li class="active"><a href={homeUrl} >Home</a> </li>
+			<li><a href={adminUrl} >Cars/Models</a> </li>
+			<li><a href={logoutLink}>Logout</a> </li>
+		</ul>
+	</div>
+</template>

@@ -1,0 +1,36 @@
+<template>
+    <form action="https://webto.salesforce.com/servlet/servlet.WebToLead?encoding=UTF-8" method="POST">
+    
+        <input type=hidden name="oid" value="00D8c000006gEo2">
+        <input type=hidden name="retURL" value="https://jesuanexp-developer-edition.na213.force.com/CarCommunity">
+        <input type=hidden id="lead_source" name="lead_source" value="Web">
+        
+        <!--  ______________________________________________________________________  -->
+        <!--  NOTE: These fields are optional debugging elements. Please uncomment    -->
+        <!--  Debug mode.                          -->
+        <!--  <input type="hidden" name="debug" value=1>                              -->
+        <!--  <input type="hidden" name="debugEmail" value="jaab0898@gmail.com">      -->
+        <!--  ______________________________________________________________________  -->
+        
+        <label class="marg" for="first_name">First Name:</label><br>
+        <input class="text" id="first_name" maxlength="40" name="first_name" size="20" type="text" /><br>
+        
+        <label class="marg" for="last_name">Last Name:</label><br>
+        <input class="text" id="last_name" maxlength="80" name="last_name" size="20" type="text" /><br>
+        
+        <label class="marg" for="email">Email:</label><br>
+        <input class="text" id="email" maxlength="80" name="email" size="20" type="text" /><br>
+        
+        <label class="marg" for="company">Company:</label><br>
+        <input class="text" id="company" maxlength="40" name="company" size="20" type="text" /><br>
+        
+        <label class="marg" for="city">City:</label><br>
+        <input class="text" id="city" maxlength="40" name="city" size="20" type="text" /><br>
+        
+        <label class="marg" for="state">State/Province:</label><br>
+        <input class="text" id="state" maxlength="20" name="state" size="20" type="text" /><br>
+    
+        <input class="marg" type="submit" name="submit">
+    
+    </form>
+</template>
